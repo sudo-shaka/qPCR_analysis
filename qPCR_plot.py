@@ -127,7 +127,6 @@ def get_Fold_Change():
 
 def save_data():
     try:
-        print(ave_data)
         csv_name = str(input('\nEnter name/path you would like to save data as: '))
         ave_data.to_csv(csv_name, encoding='utf-8', index=False)
         print("\nSaved Data!")
