@@ -30,7 +30,7 @@ def GET_DATA():
     return DATA
 
 def GET_MEANS(DATA):
-    CONDITIONS = []; n_cond = 0;
+    CONDITIONS = []; n_cond = 0
     for i in range(0,len(DATA)):
         CONDITIONS.append(str(DATA.iloc[i,0:2].values))
     
@@ -59,7 +59,7 @@ def GET_DCT(i,control_location,DATA):
             if DATA.loc[i,'Sample Name'] == DATA.loc[j,'Sample Name'] and \
                 DATA.loc[j,'Target Name'] == DATA.loc[control_location, 'Target Name']:
                 DCT = DATA.loc[i,'CT'] - DATA.loc[j,'CT']
-                break;
+                break
                 
     return DCT
 def GET_DDCT(i, control_location, DATA):
@@ -76,15 +76,13 @@ def GET_DDCT(i, control_location, DATA):
     return DDCT
 
 def main():
-    DATA = GET_DATA(); 
+    DATA = GET_DATA()
     DATA = GET_MEANS(DATA)
     control_location=0
     ask_correct = str(input("Is {} and {} your control condition? (y/n) >> ".format(DATA.loc[0,'Sample Name'], DATA.loc[0,'Target Name'])))
     if ask_correct[0].lower() != "y":
         print(DATA)
         control_location = int(input("Enter the number that corresponds to the control conditon >> "))
-    control_sample = (DATA.loc[control_location,'Sample Name'])
-    control_gene = (DATA.loc[control_location,'Target Name'])
 
     print("Calculating... ")
 
