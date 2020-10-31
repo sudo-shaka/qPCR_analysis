@@ -169,7 +169,6 @@ int main(int argc, char *argv[])
 	FILE * pCSV; pCSV = fopen(FILENAME,"r"); 
 	char TARGET_NAMES[N_LINES][20], SAMPLE_NAMES[N_LINES][20], line[1024];
 	double CT_VALS[N_LINES];
-	line[1024];
 	
 	for(int l=0;l < N_LINES;l++)
 	{
