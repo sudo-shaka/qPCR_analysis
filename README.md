@@ -1,4 +1,4 @@
-# qPCR_anaylisis
+# qPCR_analysis
 
 The sets of code provided here are to anaylize data generated from RT-QPCR.
 This will take a CSV file with sample names and gene names and calculate the fold changes in mRNA expression. 
