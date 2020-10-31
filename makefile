@@ -1,2 +1,2 @@
 all:
-	gcc -lm -std=c99 qPCR.c -o qPCR
+	gcc -std=c99 qPCR.c -lm -o qPCR
