@@ -10,4 +10,4 @@ cd qPCR_anaylisis && make
 To make executable from anywhere for to path: example: /usr/bin /usr/local/bin or .local/bin
 type ./qPCR /path/to/csv/to/anaylize/ and it will calculate your fold change
 
-Alterinatily, there is an python script for those more famliar with that language
+Alternatively there is an python script for those more famliar with that language
