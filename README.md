@@ -2,7 +2,6 @@
 
 The sets of code provided here are to anaylize data generated from RT-QPCR.
 This will take a CSV file with sample names and gene names and calculate the fold changes in mRNA expression. 
-(Tested on linux only, but should work on MACOS)
 
 To install run:
 git clone https://github.com/sudo-shaka/qPCR_analysis.git
