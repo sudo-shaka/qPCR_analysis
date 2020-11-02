@@ -42,6 +42,9 @@ def GET_MEANS(DATA):
             for j in range(0,len(DATA)):
                 if CONDITIONS[j] == CONDITIONS[i]:
                     DATA.loc[j,'n_rep'] += 1
+                    if (DATA.loc[i,'CT'] - DATA.loc[j,'AVE_CT'] < -1 or\
+                        DATA.loc[i,'CT'] - DATA.loc[j,'AVE_CT'] > 1):
+                        print("Warning: {} condition's CT values have a differnce > 1. Could mean internal replicates are inconsistent.".format(CONDITIONS[i]))
                     DATA.loc[j,'AVE_CT'] = (DATA.loc[j,'AVE_CT']*DATA.loc[j,'n_rep'] + DATA.loc[i,'CT']) /  (DATA.loc[j,'n_rep'] + 1)
                     break
     DATA = DATA.dropna().reset_index(drop = True)

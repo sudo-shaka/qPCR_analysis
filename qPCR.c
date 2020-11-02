@@ -200,7 +200,7 @@ int main(int argc, char *argv[])
 	int n_cond = 0;
 	struct DATA DATA_ARR[N_LINES-1];
 
-	/*lines 181-222 gets rid of duplicates, calulcates replicates per sample, and gets the mean of value of each found condition*/
+	/*lines 181-222 gets rid od duplicates, calulcates replicates per sample, and gets the mean of value of each found condition*/
 	for(int i=0; i < N_LINES; i++)
 	{
 		if(i == 0)
@@ -232,6 +232,9 @@ int main(int argc, char *argv[])
 					if(strcmp(CUR_COND,CONDITIONS[i]) == 0)
 					{
 						DATA_ARR[j].count++;
+						double difference = CT_VALS[i] - DATA_ARR[j].CT_VAL;
+						if(difference > 1 || difference < -1)
+							puts("Warning! CT values between the same condition are > 1. Could mean interanal replicates are inconsistent.");
 						double AVE_CT = (DATA_ARR[j].CT_VAL * DATA_ARR[j].count) + CT_VALS[i];
 						AVE_CT = AVE_CT/(DATA_ARR[j].count+1);
 						DATA_ARR[j].CT_VAL = AVE_CT;
@@ -265,7 +268,7 @@ int main(int argc, char *argv[])
 		printf("You entered %s and %s as control conditions\n",DATA_ARR[control_location].SAMPLE,DATA_ARR[control_location].TARGET);
 	}
 	/*Calulating the difference between each target from the control target gene for each sample to get deltaCT
-	Then calculating the difference of each samples value to the values determined by the control gene lastly determining fold change from controls*/
+	Then calculating the difference of each samples value to the values determined by the control gene lastly determining fond change from controls*/
 	
 	puts("\n#   SAMPLE_NAME    TARGET_NAME #Reps   \tAVE_CT\t\tDCT\t\tDDCT\t\tFOLD_CHANGE"); 
 	for(int i=0; i<n_cond; i++)
@@ -275,7 +278,7 @@ int main(int argc, char *argv[])
 		DATA_ARR[i].DDCT = get_DDCT(i,control_location,n_cond,DATA_ARR);
 		printf("\t%lf",DATA_ARR[i].DDCT);
 		DATA_ARR[i].FOLD_CHANGE = pow((double)2,(DATA_ARR[i].DDCT*-1));
-        	printf("\t%lf\n",DATA_ARR[i].FOLD_CHANGE);
+        printf("\t%lf\n",DATA_ARR[i].FOLD_CHANGE);
 	}
 	puts("\nSaving data...");
 	FILE * pRESULTS;
@@ -284,7 +287,7 @@ int main(int argc, char *argv[])
 	for(int i=0; i<n_cond; i++)
 		fprintf(pRESULTS,"%d,%s,%s,%lf,%lf,%lf,%lf\n",i,DATA_ARR[i].SAMPLE,DATA_ARR[i].TARGET,DATA_ARR[i].CT_VAL,DATA_ARR[i].DCT,DATA_ARR[i].DDCT,DATA_ARR[i].FOLD_CHANGE);
 	fclose(pCSV); fclose(pRESULTS);
-	puts("Done! See Results.csv");
+	puts("Done!");
 	
 	return 0;
 }
