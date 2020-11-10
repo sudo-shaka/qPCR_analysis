@@ -234,7 +234,7 @@ int main(int argc, char *argv[])
 						DATA_ARR[j].count++;
 						double difference = CT_VALS[i] - DATA_ARR[j].CT_VAL;
 						if(difference > 1 || difference < -1)
-							puts("Warning! CT values between the same condition are > 1. Could mean interanal replicates are inconsistent.");
+							puts("Warning! CT values between the same condition are > 1. Could mean internal replicates are inconsistent.");
 						double AVE_CT = (DATA_ARR[j].CT_VAL * DATA_ARR[j].count) + CT_VALS[i];
 						AVE_CT = AVE_CT/(DATA_ARR[j].count+1);
 						DATA_ARR[j].CT_VAL = AVE_CT;
